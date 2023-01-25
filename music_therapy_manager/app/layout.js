@@ -3,6 +3,8 @@ import './globals.css'
 import Head from 'next/head'
 import Navagation from './navbar'
 import Context from "./Context";
+import { AuthProvider } from '../context/AuthContext';
+import BodyWrapper from '../components/BodyWrapper';
 
 
 export default function RootLayout({ children }) {
@@ -14,11 +16,15 @@ export default function RootLayout({ children }) {
       */}
 
       <Head />
-     
-      
+
+
       <body>
-      <Navagation />
-      <Context>{children}</Context>
+        <AuthProvider>
+          <Navagation />
+          <BodyWrapper>
+            <Context>{children}</Context>
+          </BodyWrapper>
+        </AuthProvider>
       </body>
     </html>
   )
