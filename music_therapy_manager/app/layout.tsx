@@ -3,11 +3,15 @@ import './globals.css'
 import Head from 'next/head'
 import Navagation from './navbar'
 import Context from "./Context";
+import { PropsWithChildren } from "react";
 import { AuthProvider } from '../context/AuthContext';
 import BodyWrapper from '../components/BodyWrapper';
+import { SuncelContext } from "@suncel/nextjs";
+import type { AppProps } from "next/app";
+import { NextPage } from 'next';
 
 
-export default function RootLayout({ children }) {
+const RootLayout: NextPage<PropsWithChildren> = function ({ children }) {
   return (
     <html lang="en">
       {/*
@@ -15,7 +19,7 @@ export default function RootLayout({ children }) {
         head.jsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
 
-      <Head />
+      <Head children={undefined} />
 
 
       <body>
@@ -25,7 +29,9 @@ export default function RootLayout({ children }) {
             <Context>{children}</Context>
           </BodyWrapper>
         </AuthProvider>
+
       </body>
     </html>
   )
 }
+export default RootLayout
