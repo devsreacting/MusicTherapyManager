@@ -6,8 +6,6 @@ import Context from "./Context";
 import { PropsWithChildren } from "react";
 import { AuthProvider } from '../context/AuthContext';
 import BodyWrapper from '../components/BodyWrapper';
-import { SuncelContext } from "@suncel/nextjs";
-import type { AppProps } from "next/app";
 import { NextPage } from 'next';
 
 

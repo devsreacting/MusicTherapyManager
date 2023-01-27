@@ -1,6 +1,5 @@
 import './globals.css'
 import Link from 'next/link'
-import Image from "next/image";
 import { FaGuitar } from 'react-icons/fa'
 import { Navbar, Dropdown, Avatar } from 'flowbite-react';
 import { useAuth } from '../context/AuthContext'
