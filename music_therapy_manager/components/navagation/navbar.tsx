@@ -27,10 +27,13 @@ import {
 } from "react-icons/hi";
 import { useSidebarContext } from "./SidebarContext";
 import isSmallScreen from "../../helpers/is-small-screen"
+import { useAuth } from '../../context/AuthContext'
+import { useRouter } from "next/navigation";
 
 const ExampleNavbar: FC = function () {
   const { isOpenOnSmallScreens, isPageWithSidebar, setOpenOnSmallScreens } =
     useSidebarContext();
+  const { currentUser } = useAuth()
 
   return (
     <Navbar fluid>
@@ -76,21 +79,25 @@ const ExampleNavbar: FC = function () {
             </form>
           </div>
           <div className="flex items-center lg:gap-3">
-            <div className="flex items-center">
-              <button
-                onClick={() => setOpenOnSmallScreens(!isOpenOnSmallScreens)}
-                className="cursor-pointer rounded p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:ring-2 focus:ring-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:bg-gray-700 dark:focus:ring-gray-700 lg:hidden"
-              >
-                <span className="sr-only">Search</span>
-                <HiSearch className="h-6 w-6" />
-              </button>
-              <NotificationBellDropdown />
-              <AppDrawerDropdown />
-              <DarkThemeToggle />
-            </div>
-            <div className="hidden lg:block">
-              <UserDropdown />
-            </div>
+            {currentUser && (
+              <div className="flex items-center">
+                <div className="flex items-center">
+                  <button
+                    onClick={() => setOpenOnSmallScreens(!isOpenOnSmallScreens)}
+                    className="cursor-pointer rounded p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:ring-2 focus:ring-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:bg-gray-700 dark:focus:ring-gray-700 lg:hidden"
+                  >
+                    <span className="sr-only">Search</span>
+                    <HiSearch className="h-6 w-6" />
+                  </button>
+                  <NotificationBellDropdown />
+                  <AppDrawerDropdown />
+                  <DarkThemeToggle />
+                </div>
+                <div className="hidden lg:block">
+                  <UserDropdown />
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -451,6 +458,16 @@ const AppDrawerDropdown: FC = function () {
 };
 
 const UserDropdown: FC = function () {
+  const { logout, currentUser } = useAuth()
+  const router = useRouter();
+
+  const profilePage = (uid: any) => {
+    router.push(`/account/${uid}`);
+  };
+
+  const dashboard = () => {
+    router.push(`/dashboard`);
+  };
   return (
     <Dropdown
       arrowIcon={false}
@@ -473,11 +490,12 @@ const UserDropdown: FC = function () {
           neil.sims@flowbite.com
         </span>
       </Dropdown.Header>
-      <Dropdown.Item>Dashboard</Dropdown.Item>
+      <Dropdown.Item onClick={() => profilePage(currentUser.uid)}>Profile Page</Dropdown.Item>
+      <Dropdown.Item onClick={() => dashboard()}>Dashboard</Dropdown.Item>
       <Dropdown.Item>Settings</Dropdown.Item>
       <Dropdown.Item>Earnings</Dropdown.Item>
       <Dropdown.Divider />
-      <Dropdown.Item>Sign out</Dropdown.Item>
+      <Dropdown.Item onClick={() => { logout(); }} >Sign out</Dropdown.Item>
     </Dropdown>
   );
 };

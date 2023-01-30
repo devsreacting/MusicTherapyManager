@@ -1,9 +1,43 @@
+'use client'
 import { Badge, Breadcrumb, Progress } from "flowbite-react";
 import type { FC } from "react";
 import { HiBriefcase, HiHome, HiMap } from "react-icons/hi";
 import NavbarSidebarLayout from "../navagation/navbar-sidebar";
+import React, { useState, useEffect } from 'react';
+import { db } from '../../firebase'
+import { doc, getDoc, setDoc } from 'firebase/firestore'
+import { useAuth } from '../../context/AuthContext'
 
-const UserProfilePage: FC = function () {
+const UserProfilePage: FC = function ({ userId }) {
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+  const [userInfo, setUserInfo] = useState(null);
+  const { currentUser } = useAuth()
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const docRef = doc(db, 'users', currentUser.uid)
+        const docSnap = await getDoc(docRef)
+        if (docSnap.exists()) {
+          setUserInfo(docSnap.data())
+        } else {
+          setUserInfo({})
+        }
+      } catch (err) {
+        setError('Failed to load user data')
+        console.log(err)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchData()
+  }, [])
+
+  if (!userInfo) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <NavbarSidebarLayout>
       <div className="grid grid-cols-1 px-4 pt-6 xl:grid-cols-3 xl:gap-4">
@@ -23,7 +57,7 @@ const UserProfilePage: FC = function () {
           </h1>
         </div>
         <div className="col-span-full xl:col-auto">
-          <ProfileIntro />
+          <ProfileIntro userInfo={userInfo} />
           <Skills />
           <Hobbies />
         </div>
@@ -36,7 +70,7 @@ const UserProfilePage: FC = function () {
   );
 };
 
-const ProfileIntro: FC = function () {
+const ProfileIntro: FC = function ({ userInfo }) {
   return (
     <div className="mb-4 rounded-lg bg-white p-4 shadow dark:bg-gray-800 sm:p-6 xl:p-8">
       <div className="sm:flex sm:space-x-4 xl:block xl:space-x-0">
@@ -46,7 +80,7 @@ const ProfileIntro: FC = function () {
           className="mb-2 h-20 w-20 rounded-lg"
         />
         <div>
-          <h2 className="text-xl font-bold dark:text-white">Jese Leos</h2>
+          <h2 className="text-xl font-bold dark:text-white text-black">{userInfo.name}</h2>
           <ul className="mt-2 space-y-1">
             <li className="flex items-center text-sm font-normal text-gray-500 dark:text-gray-400">
               <HiBriefcase className="mr-2 text-lg text-gray-900 dark:text-gray-100" />
