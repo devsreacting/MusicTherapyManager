@@ -392,7 +392,7 @@ const Hobbies: FC = function () {
 const GeneralInformation: FC = function () {
   return (
     <div className="mb-4 rounded-lg bg-white p-4 shadow dark:bg-gray-800 sm:p-6 xl:p-8">
-      <h3 className="mb-4 text-xl font-bold dark:text-white">
+      <h3 className="mb-4 text-xl font-bold dark:text-white text-gray-900">
         General information
       </h3>
       <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">

@@ -461,6 +461,10 @@ const UserDropdown: FC = function () {
   const { logout, currentUser } = useAuth()
   const router = useRouter();
 
+  const profileSettingsPage = (uid: any) => {
+    router.push(`/account/${uid}/settings`);
+  };
+
   const profilePage = (uid: any) => {
     router.push(`/account/${uid}`);
   };
@@ -492,7 +496,7 @@ const UserDropdown: FC = function () {
       </Dropdown.Header>
       <Dropdown.Item onClick={() => profilePage(currentUser.uid)}>Profile Page</Dropdown.Item>
       <Dropdown.Item onClick={() => dashboard()}>Dashboard</Dropdown.Item>
-      <Dropdown.Item>Settings</Dropdown.Item>
+      <Dropdown.Item onClick={() => profileSettingsPage(currentUser.uid)}>Settings</Dropdown.Item>
       <Dropdown.Item>Earnings</Dropdown.Item>
       <Dropdown.Divider />
       <Dropdown.Item onClick={() => { logout(); }} >Sign out</Dropdown.Item>
