@@ -12,7 +12,9 @@
     "@headlessui/react": "^1.7.7",
     "@heroicons/react": "^2.0.13",
     "@next/font": "13.1.4",
+    "faker": "^5.5.3",
     "firebase": "^9.16.0",
+    "firebase-admin": "^11.5.0",
     "flowbite": "^1.6.3",
     "flowbite-react": "^0.3.7",
     "headlessui": "^0.0.0",
@@ -23,6 +25,7 @@
     "react-icons": "^4.7.1"
   },
   "devDependencies": {
+    "@faker-js/faker": "^7.6.0",
     "@types/react": "18.0.27",
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.21",

@@ -5,6 +5,7 @@ import { Navbar, Dropdown, Avatar } from 'flowbite-react';
 import { useAuth } from '../context/AuthContext'
 
 
+
 function Navagation(): JSX.Element {
   const { logout, currentUser } = useAuth()
   console.log(currentUser);
