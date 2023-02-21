@@ -21,9 +21,8 @@ const RootLayout: NextPage<PropsWithChildren> = function ({ children }) {
 
 
       <body>
-           
+
         <AuthProvider>
-         
           <BodyWrapper>
             <Context>{children}</Context>
           </BodyWrapper>

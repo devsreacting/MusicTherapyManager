@@ -39,7 +39,6 @@ export default function Login() {
                 </h2>
             </button>
             <h2 className='duration-300 hover:scale-110 cursor-pointer' onClick={() => setIsLoggingIn(!isLoggingIn)}>{!isLoggingIn ? 'Login' : 'Register'}</h2>
-
         </div>
     )
 }
