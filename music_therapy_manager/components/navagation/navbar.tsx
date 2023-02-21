@@ -53,16 +53,6 @@ const ExampleNavbar: FC = function () {
                 )}
               </button>
             )}
-            <Navbar.Brand href="/">
-              <img
-                alt=""
-                src="https://flowbite.com/docs/images/logo.svg"
-                className="mr-3 h-6 sm:h-8"
-              />
-              <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">
-                Flowbite
-              </span>
-            </Navbar.Brand>
             <form className="ml-16 hidden md:block">
               <Label htmlFor="search" className="sr-only">
                 Search
@@ -89,7 +79,6 @@ const ExampleNavbar: FC = function () {
                     <span className="sr-only">Search</span>
                     <HiSearch className="h-6 w-6" />
                   </button>
-                  <NotificationBellDropdown />
                   <AppDrawerDropdown />
                   <DarkThemeToggle />
                 </div>
