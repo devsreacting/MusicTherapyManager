@@ -333,7 +333,7 @@ const PasswordInformationCard: FC = function () {
             </ul>
           </div>
           <div className="col-span-6 text-gray-900">
-            <Button color="primary">Save all</Button>
+            <Button>Save all</Button>
           </div>
         </div>
       </form>
