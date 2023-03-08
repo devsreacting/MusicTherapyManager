@@ -1,67 +1,65 @@
+const admin = require('firebase-admin');
 const faker = require('faker');
-const fs = require('fs');
 
-const data = [];
+// Replace these values with your own Firebase project credentials
+const serviceAccount = require('./serviceAccount.json');
+const projectId = 'music-therapy-manager-ff592';
 
-// Generate dummy businesses, therapists, patients, sessions, and invoices
-for (let i = 0; i < 10; i++) {
-  const therapists = [];
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: `https://${projectId}.firebaseio.com`
+});
 
-  for (let j = 0; j < 5; j++) {
-    const patients = [];
+const db = admin.firestore();
 
-    for (let k = 0; k < 20; k++) {
-      const sessions = [];
-
-      for (let l = 0; l < 5; l++) {
-        sessions.push({
-          date: faker.date.past(),
-          time: faker.time.recent(),
-          duration: faker.random.number({min: 30, max: 120}),
-          notes: faker.lorem.sentences(3),
-          progress: faker.random.number({min: 1, max: 10})
-        });
-      }
-
-      const invoices = [];
-
-      for (let m = 0; m < 3; m++) {
-        invoices.push({
-          date: faker.date.past(),
-          amount: faker.random.number({min: 50, max: 500}),
-          status: faker.random.arrayElement(['paid', 'unpaid']),
-          notes: faker.lorem.sentences(2)
-        });
-      }
-
-      patients.push({
-        name: faker.name.findName(),
-        email: faker.internet.email(),
-        phone: faker.phone.phoneNumber(),
-        sessions: sessions,
-        invoices: invoices
-      });
-    }
-
-    therapists.push({
-      name: faker.name.findName(),
+async function generateDummyData() {
+  for (let i = 0; i < 10; i++) {
+    const businessRef = db.collection('businesses').doc();
+    await businessRef.set({
+      address: faker.address.streetAddress(),
       email: faker.internet.email(),
-      phone: faker.phone.phoneNumber(),
-      patients: patients
+      name: faker.company.companyName(),
+      phone: faker.phone.phoneNumber()
     });
-  }
+    for (let j = 0; j < 5; j++) {
+      const therapistRef = businessRef.collection('therapists').doc();
+      await therapistRef.set({
+        email: faker.internet.email(),
+        name: `${faker.name.firstName()} ${faker.name.lastName()}`,
+        phone: faker.phone.phoneNumber()
+      });
+      for (let k = 0; k < 20; k++) {
+        const patientRef = therapistRef.collection('patients').doc();
+        await patientRef.set({
+          email: faker.internet.email(),
+          name: `${faker.name.firstName()} ${faker.name.lastName()}`,
+          phone: `${faker.phone.phoneNumber()}`
+        });
 
-  data.push({
-    name: faker.company.companyName(),
-    email: faker.internet.email(),
-    phone: faker.phone.phoneNumber(),
-    address: faker.address.streetAddress(),
-    therapists: therapists
-  });
+        for (let l = 0; l < 10; l++) {
+          const sessionRef = patientRef.collection('sessions').doc();
+          await sessionRef.set({
+            date: `${faker.date.past().toISOString()}`,
+            duration: `${Math.floor(Math.random() * 120)}`,
+            notes: [`${faker.lorem.sentence()}`],
+            progress: `${Math.floor(Math.random() * 100)}`
+          })
+        }
+
+        for (let m = 0; m < 5; m++) {
+          const invoiceRef = patientRef.collection('invoices').doc();
+          await invoiceRef.set({
+            amount: `${Math.floor(Math.random() * 10000)}`,
+            date: `${faker.date.past().toISOString()}`,
+            notes: [`${faker.lorem.sentence()}`],
+            status: `${["paid", "unpaid", "pending"][Math.floor(Math.random() * 3)]}`
+          })
+        }
+      }
+    }
+  }
 }
 
-// Write data to JSON file
-fs.writeFile('dummy-data.json', JSON.stringify(data), (err) => {
-  if (err) throw err;
-  console.log('Data written to file.');
+generateDummyData().then(() => {
+  console.log("Dummy data written to Firestore");
 });
