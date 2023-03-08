@@ -1,7 +1,7 @@
 "use client"
 import './globals.css'
 import Head from 'next/head'
-import Navagation from './navbar'
+
 import Context from "./Context";
 import { PropsWithChildren } from "react";
 import { AuthProvider } from '../context/AuthContext';
@@ -21,8 +21,9 @@ const RootLayout: NextPage<PropsWithChildren> = function ({ children }) {
 
 
       <body>
+           
         <AuthProvider>
-          <Navagation />
+         
           <BodyWrapper>
             <Context>{children}</Context>
           </BodyWrapper>

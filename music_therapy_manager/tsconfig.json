@@ -17,6 +17,7 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "noPropertyAccessFromIndexSignature": true,
+    "typeRoots": ["node_modules/@types", "types"],
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -32,5 +33,5 @@
     "target": "ESNext"
   },
   "exclude": [".next", "node_modules"],
-  "include": [".next/types/**/*.ts", "next-env.d.ts", "**/*.ts", "**/*.tsx"]
+  "include": [".next/types/**/*.ts", "next-env.d.ts", "**/*.ts", "**/*.tsx", "generateDummyData.js","src/**/*.ts", "app/flowbite-theme.ts"]
 }
