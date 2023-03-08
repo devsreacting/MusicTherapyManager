@@ -2,7 +2,7 @@
 
 import { useAuth } from '../context/AuthContext'
 import Login from "../components/Login"
-import UserDashboard from "../components/UserDashboard"
+import List from "../components/users/list"
 
 
 
@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <div>
       {!currentUser && <Login />}
-      {currentUser && <UserDashboard />}
+      {currentUser && <List />}
     </div>
   )
 }

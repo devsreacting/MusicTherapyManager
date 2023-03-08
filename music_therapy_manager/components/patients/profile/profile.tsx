@@ -2,13 +2,13 @@
 import { Breadcrumb } from "flowbite-react";
 import type { FC } from "react";
 import { HiHome } from "react-icons/hi";
-import NavbarSidebarLayout from "../navagation/navbar-sidebar";
+import NavbarSidebarLayout from "../../navagation/navbar-sidebar";
 import React, { useEffect } from 'react';
-import { db } from '../../firebase'
+import { db } from '../../../firebase'
 import { doc, getDoc } from 'firebase/firestore'
-import { useAuth } from '../../context/AuthContext'
+import { useAuth } from '../../../context/AuthContext'
 
-const UserProfilePage: FC = function () {
+const PatientProfilePage: FC = function () {
   // const [loading, setLoading] = useState(true)
   // const [error, setError] = useState(null)
   // const [userInfo, setUserInfo] = useState(null);
@@ -49,7 +49,7 @@ const UserProfilePage: FC = function () {
                 <span className="dark:text-white">Home</span>
               </div>
             </Breadcrumb.Item>
-            <Breadcrumb.Item href="/users/list">Users</Breadcrumb.Item>
+            <Breadcrumb.Item href="/patients">Patients</Breadcrumb.Item>
             <Breadcrumb.Item>Profile</Breadcrumb.Item>
           </Breadcrumb>
           <h1 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">
@@ -339,65 +339,4 @@ const GeneralInformation: FC = function () {
   );
 };
 
-// const ProgressBars: FC = function () {
-//   return (
-//     <div className="mb-4 rounded-lg bg-white p-4 shadow dark:bg-gray-800 sm:p-6 xl:p-8">
-//       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-16 lg:gap-8 2xl:gap-24">
-//         <div className="space-y-6">
-//           <div>
-//             <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">
-//               Figma
-//             </div>
-//             <Progress progress={95} color="dark" />
-//           </div>
-//           <div>
-//             <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">
-//               Php
-//             </div>
-//             <Progress progress={55} color="dark" />
-//           </div>
-//           <div>
-//             <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">
-//               HTML
-//             </div>
-//             <Progress progress={85} color="dark" />
-//           </div>
-//           <div>
-//             <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">
-//               React
-//             </div>
-//             <Progress progress={65} color="dark" />
-//           </div>
-//         </div>
-//         <div className="space-y-6">
-//           <div>
-//             <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">
-//               Vue
-//             </div>
-//             <Progress progress={45} color="dark" />
-//           </div>
-//           <div>
-//             <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">
-//               Marketing
-//             </div>
-//             <Progress progress={90} color="dark" />
-//           </div>
-//           <div>
-//             <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">
-//               Product Design
-//             </div>
-//             <Progress progress={99} color="dark" />
-//           </div>
-//           <div>
-//             <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">
-//               Angular
-//             </div>
-//             <Progress progress={45} color="dark" />
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-export default UserProfilePage;
+export default PatientProfilePage;

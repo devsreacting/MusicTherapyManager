@@ -1,13 +1,10 @@
+import List from "../../components/patients/list"
 
-export default  function PatientsPage() {
+
+export default function Page() {
 
 
-    return (
-      <div>
-        <h1>PatientsPage</h1>
-      </div>
-    );
-  }
-  
-  
-  
+  return (
+    <List />
+  );
+}
