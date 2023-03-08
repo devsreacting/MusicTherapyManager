@@ -5,29 +5,24 @@ import {
   Button,
   Card,
   Label,
-  Select,
   TextInput,
-  ToggleSwitch,
 } from "flowbite-react";
 import type { FC } from "react";
-import { FaDribbble, FaFacebookF, FaGithub, FaTwitter } from "react-icons/fa";
 import {
   HiCloudUpload,
-  HiDesktopComputer,
-  HiDeviceMobile,
   HiHome,
 } from "react-icons/hi";
 import NavbarSidebarLayout from "../navagation/navbar-sidebar";
 import { useAuth } from '../../context/AuthContext'
 import React, { useState, useEffect } from 'react';
-import { db, storage } from '../../firebase'
+import { db } from '../../firebase'
 import { doc, getDoc, setDoc } from 'firebase/firestore'
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+// import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
-const UserSettingsPage: FC = function ({ userId }) {
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
-  const [userInfo, setUserInfo] = useState(null);
+const UserSettingsPage: FC = function () {
+  // const [loading, setLoading] = useState(true)
+  // const [error, setError] = useState(null)
+  // const [userInfo, setUserInfo] = useState(null);
   const { currentUser } = useAuth()
   useEffect(() => {
     async function fetchData() {
@@ -35,23 +30,23 @@ const UserSettingsPage: FC = function ({ userId }) {
         const docRef = doc(db, 'users', currentUser.uid)
         const docSnap = await getDoc(docRef)
         if (docSnap.exists()) {
-          setUserInfo(docSnap.data())
+          // setUserInfo(docSnap.data())
         } else {
-          setUserInfo({})
+          // setUserInfo({})
         }
       } catch (err) {
-        setError('Failed to load user data')
-        console.log(error)
+        // setError('Failed to load user data')
+        // console.log(error)
       } finally {
-        setLoading(false)
+        // setLoading(false)
       }
     }
     fetchData()
   }, [])
 
-  if (!userInfo || loading) {
-    return <div>Loading...</div>;
-  }
+  // if (!userInfo || loading) {
+  //   return <div>Loading...</div>;
+  // }
   return (
     <NavbarSidebarLayout>
       <>
@@ -73,13 +68,13 @@ const UserSettingsPage: FC = function ({ userId }) {
           </div>
           <div className="col-span-full xl:col-auto">
             <div className="grid grid-cols-1 gap-y-4">
-              <UserProfileCard userInfo={userInfo} />
+              <UserProfileCard />
               <PasswordInformationCard />
             </div>
           </div>
           <div className="col-span-2">
             <div className="grid grid-cols-1 gap-y-4">
-              <GeneralInformationCard userInfo={userInfo} />
+              <GeneralInformationCard />
             </div>
           </div>
         </div>
@@ -88,52 +83,52 @@ const UserSettingsPage: FC = function ({ userId }) {
   );
 };
 
-const UserProfileCard: FC = function ({ userInfo }) {
-  const [image, setImage] = useState(null);
-  const [url, setUrl] = useState(null);
+const UserProfileCard: FC = function () {
+  // const [image, setImage] = useState(null);
+  // const [url, setUrl] = useState(null);
 
-  const handleImageChange = (e) => {
-    if (e.target.files[0]) {
-      setImage(e.target.files[0]);
-    }
-  };
+  // const handleImageChange = (e) => {
+  //   if (e.target.files[0]) {
+  //     setImage(e.target.files[0]);
+  //   }
+  // };
 
-  const handleSubmit = () => {
-    const imageRef = ref(storage, "image");
-    uploadBytes(imageRef, image)
-      .then(() => {
-        getDownloadURL(imageRef)
-          .then((url) => {
-            setUrl(url);
-          })
-          .catch((error) => {
-            console.log(error.message, "error getting the image url");
-          });
-        setImage(null);
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
-  };
+  // const handleSubmit = () => {
+  //   const imageRef = ref(storage, "image");
+  //   uploadBytes(imageRef, image)
+  //     .then(() => {
+  //       getDownloadURL(imageRef)
+  //         .then((url) => {
+  //           setUrl(url);
+  //         })
+  //         .catch((error) => {
+  //           console.log(error.message, "error getting the image url");
+  //         });
+  //       setImage(null);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error.message);
+  //     });
+  // };
 
-  useEffect(() => {
-    if (userInfo.personal_information.first_name) {
-      setFirstName(userInfo.personal_information.first_name)
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (userInfo.personal_information.first_name) {
+  //     setFirstName(userInfo.personal_information.first_name)
+  //   }
+  // }, []);
   return (
     <Card>
       <div className="items-center sm:flex sm:space-x-4 xl:block xl:space-x-0 2xl:flex 2xl:space-x-4">
-        <img
+        {/* <img
           alt=""
           src={url}
           className="mb-4 h-28 w-28 rounded-lg sm:mb-0 xl:mb-4 2xl:mb-0"
-        />
-        <input type="file" onChange={handleImageChange} />
-        <button onClick={handleSubmit}>Submit</button>
+        /> */}
+        {/* <input type="file" onChange={handleImageChange} /> */}
+        {/* <button onClick={handleSubmit}>Submit</button> */}
         <div>
           <h3 className="mb-1 text-2xl font-bold text-gray-900 dark:text-white">
-            {userInfo.personal_information.first_name} {userInfo.personal_information.last_name}
+            First Name, Last Name
           </h3>
           <div className="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
             Software Engineer
@@ -151,23 +146,23 @@ const UserProfileCard: FC = function ({ userInfo }) {
   );
 };
 
-const GeneralInformationCard: FC = function ({ userInfo }) {
+const GeneralInformationCard: FC = function () {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
-  const [error, setError] = useState(null)
-  const [userInformation, setUserInformation] = useState(null);
+  // const [error, setError] = useState(null)
+  // const [userInformation, setUserInformation] = useState(null);
 
   useEffect(() => {
-    if (userInfo.personal_information.first_name) {
-      setFirstName(userInfo.personal_information.first_name)
-    }
-    if (userInfo.personal_information.last_name) {
-      setLastName(userInfo.personal_information.last_name)
-    }
-    if (userInfo.personal_information.email) {
-      setEmail(userInfo.personal_information.email)
-    }
+    // if (userInfo.personal_information.first_name) {
+    //   setFirstName(userInfo.personal_information.first_name)
+    // }
+    // if (userInfo.personal_information.last_name) {
+    //   setLastName(userInfo.personal_information.last_name)
+    // }
+    // if (userInfo.personal_information.email) {
+    //   setEmail(userInfo.personal_information.email)
+    // }
   }, []);
 
   const { currentUser } = useAuth()
@@ -183,15 +178,15 @@ const GeneralInformationCard: FC = function ({ userInfo }) {
             "email": email
           }
         }, { merge: true })
-        if (docSnap.exists()) {
-          setUserInformation(docSnap.data())
-        } else {
-          setUserInformation({})
-          console.log('doesnt')
-        }
+        // if (docSnap.exists()) {
+        // setUserInformation(docSnap.data())
+        // } else {
+        // setUserInformation({})
+        console.log('doesnt')
+        // }
         console.log('success')
       } catch (err) {
-        setError('Failed to load user data')
+        // setError('Failed to load user data')
       } finally {
         // setLoading(false)
       }

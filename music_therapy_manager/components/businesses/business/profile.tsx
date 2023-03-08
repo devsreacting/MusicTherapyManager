@@ -3,7 +3,7 @@ import { Breadcrumb, Button } from "flowbite-react";
 import type { FC } from "react";
 import { HiBriefcase, HiHome, HiMap } from "react-icons/hi";
 import NavbarSidebarLayout from "../../navagation/navbar-sidebar";
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { db } from '../../../firebase'
 import { doc, getDoc } from 'firebase/firestore'
 import { useAuth } from '../../../context/AuthContext'
@@ -27,15 +27,15 @@ const BusinessProfilePage: FC = function () {
             } catch (err) {
                 console.log(err)
             } finally {
-                setLoading(false)
+                // setLoading(false)
             }
         }
         fetchData()
     }, [])
 
-    if (!userInfo) {
-        return <div>Loading...</div>;
-    }
+    // if (!userInfo) {
+    //     return <div>Loading...</div>;
+    // }
 
     return (
         <NavbarSidebarLayout>

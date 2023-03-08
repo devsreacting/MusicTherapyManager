@@ -8,7 +8,6 @@ import {
     HiDotsVertical,
     HiDownload,
     HiHome,
-    HiArrowNarrowRight,
     HiCalendar,
     HiPrinter,
 } from "react-icons/hi";

@@ -2,12 +2,10 @@
 
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import {
-    Badge,
     Breadcrumb,
     Button,
     Card,
     Label,
-    Table,
     Textarea,
     TextInput,
 } from "flowbite-react";

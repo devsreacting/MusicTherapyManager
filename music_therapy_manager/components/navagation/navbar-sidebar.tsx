@@ -1,9 +1,9 @@
-import { Footer } from "flowbite-react";
+// import { Footer } from "flowbite-react";
 import type { FC, PropsWithChildren } from "react";
 import Navbar from "./navbar";
 import Sidebar from "./sidebar";
-import { MdFacebook } from "react-icons/md";
-import { FaDribbble, FaGithub, FaInstagram, FaTwitter } from "react-icons/fa";
+// import { MdFacebook } from "react-icons/md";
+// import { FaDribbble, FaGithub, FaInstagram, FaTwitter } from "react-icons/fa";
 import { SidebarProvider, useSidebarContext } from "./SidebarContext";
 import classNames from "classnames";
 

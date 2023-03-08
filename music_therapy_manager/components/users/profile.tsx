@@ -1,17 +1,17 @@
 'use client'
-import { Breadcrumb, Progress } from "flowbite-react";
+import { Breadcrumb } from "flowbite-react";
 import type { FC } from "react";
-import { HiBriefcase, HiHome, HiMap } from "react-icons/hi";
+import { HiHome } from "react-icons/hi";
 import NavbarSidebarLayout from "../navagation/navbar-sidebar";
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { db } from '../../firebase'
 import { doc, getDoc } from 'firebase/firestore'
 import { useAuth } from '../../context/AuthContext'
 
-const UserProfilePage: FC = function ({ userId }) {
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
-  const [userInfo, setUserInfo] = useState(null);
+const UserProfilePage: FC = function () {
+  // const [loading, setLoading] = useState(true)
+  // const [error, setError] = useState(null)
+  // const [userInfo, setUserInfo] = useState(null);
   const { currentUser } = useAuth()
 
   useEffect(() => {
@@ -20,23 +20,23 @@ const UserProfilePage: FC = function ({ userId }) {
         const docRef = doc(db, 'users', currentUser.uid)
         const docSnap = await getDoc(docRef)
         if (docSnap.exists()) {
-          setUserInfo(docSnap.data())
+          // setUserInfo(docSnap.data())
         } else {
-          setUserInfo({})
+          // setUserInfo({})
         }
       } catch (err) {
-        setError('Failed to load user data')
+        // setError('Failed to load user data')
         console.log(err)
       } finally {
-        setLoading(false)
+        // setLoading(false)
       }
     }
     fetchData()
   }, [])
 
-  if (!userInfo) {
-    return <div>Loading...</div>;
-  }
+  // if (!userInfo) {
+  //   return <div>Loading...</div>;
+  // }
 
   return (
     <NavbarSidebarLayout>
@@ -57,7 +57,7 @@ const UserProfilePage: FC = function ({ userId }) {
           </h1>
         </div>
         <div className="col-span-full xl:col-auto">
-          <ProfileIntro userInfo={userInfo} />
+          {/* <ProfileIntro userInfo={userInfo} /> */}
         </div>
         <div className="col-span-2">
           <GeneralInformation />
@@ -68,66 +68,66 @@ const UserProfilePage: FC = function ({ userId }) {
   );
 };
 
-const ProfileIntro: FC = function ({ userInfo }) {
-  return (
-    <div className="mb-4 rounded-lg bg-white p-4 shadow dark:bg-gray-800 sm:p-6 xl:p-8">
-      <div className="sm:flex sm:space-x-4 xl:block xl:space-x-0">
-        <img
-          alt=""
-          src="../../images/users/jese-leos-2x.png"
-          className="mb-2 h-20 w-20 rounded-lg"
-        />
-        <div>
-          <h2 className="text-xl font-bold dark:text-white text-black">Firstname Lastname</h2>
-          <ul className="mt-2 space-y-1">
-            <li className="flex items-center text-sm font-normal text-gray-500 dark:text-gray-400">
-              <HiBriefcase className="mr-2 text-lg text-gray-900 dark:text-gray-100" />
-              Front-end Developer
-            </li>
-            <li className="flex items-center text-sm font-normal text-gray-500 dark:text-gray-400">
-              <HiMap className="mr-2 text-lg text-gray-900 dark:text-gray-100" />
-              San Francisco, USA
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div className="sm:flex xl:block xl:space-y-4">
-        <div className="sm:flex-1">
-          <address className="text-sm font-normal not-italic text-gray-500 dark:text-gray-400">
-            <div className="mt-4">Email address</div>
-            <a
-              className="text-sm font-medium text-gray-900 dark:text-white"
-              href="mailto:webmaster@flowbite.com"
-            >
-              yourname@flowbite.com
-            </a>
-            <div className="mt-4">Home address</div>
-            <div className="mb-2 text-sm font-medium text-gray-900 dark:text-white">
-              92 Miles Drive, Newark, NJ 07103, California, <br />
-              United States of America
-            </div>
-            <div className="mt-4">Phone number</div>
-            <div className="mb-2 text-sm font-medium text-gray-900 dark:text-white">
-              +00 123 456 789 / +12 345 678
-            </div>
-          </address>
-        </div>
-        <div className="hidden sm:flex-1">
-          <h3 className="mb-2 text-base font-bold text-gray-900 dark:text-white">
-            About
-          </h3>
-          <p className="text-sm font-normal text-gray-500 dark:text-gray-400">
-            Dedicated, passionate, and accomplished Full Stack Developer with 9+
-            years of progressive experience working as an Independent Contractor
-            for Google and developing and growing my educational social network
-            that helps others learn programming, web design, game development,
-            networking.
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-};
+// const ProfileIntro: FC = function () {
+//   return (
+//     <div className="mb-4 rounded-lg bg-white p-4 shadow dark:bg-gray-800 sm:p-6 xl:p-8">
+//       <div className="sm:flex sm:space-x-4 xl:block xl:space-x-0">
+//         <img
+//           alt=""
+//           src="../../images/users/jese-leos-2x.png"
+//           className="mb-2 h-20 w-20 rounded-lg"
+//         />
+//         <div>
+//           <h2 className="text-xl font-bold dark:text-white text-black">Firstname Lastname</h2>
+//           <ul className="mt-2 space-y-1">
+//             <li className="flex items-center text-sm font-normal text-gray-500 dark:text-gray-400">
+//               <HiBriefcase className="mr-2 text-lg text-gray-900 dark:text-gray-100" />
+//               Front-end Developer
+//             </li>
+//             <li className="flex items-center text-sm font-normal text-gray-500 dark:text-gray-400">
+//               <HiMap className="mr-2 text-lg text-gray-900 dark:text-gray-100" />
+//               San Francisco, USA
+//             </li>
+//           </ul>
+//         </div>
+//       </div>
+//       <div className="sm:flex xl:block xl:space-y-4">
+//         <div className="sm:flex-1">
+//           <address className="text-sm font-normal not-italic text-gray-500 dark:text-gray-400">
+//             <div className="mt-4">Email address</div>
+//             <a
+//               className="text-sm font-medium text-gray-900 dark:text-white"
+//               href="mailto:webmaster@flowbite.com"
+//             >
+//               yourname@flowbite.com
+//             </a>
+//             <div className="mt-4">Home address</div>
+//             <div className="mb-2 text-sm font-medium text-gray-900 dark:text-white">
+//               92 Miles Drive, Newark, NJ 07103, California, <br />
+//               United States of America
+//             </div>
+//             <div className="mt-4">Phone number</div>
+//             <div className="mb-2 text-sm font-medium text-gray-900 dark:text-white">
+//               +00 123 456 789 / +12 345 678
+//             </div>
+//           </address>
+//         </div>
+//         <div className="hidden sm:flex-1">
+//           <h3 className="mb-2 text-base font-bold text-gray-900 dark:text-white">
+//             About
+//           </h3>
+//           <p className="text-sm font-normal text-gray-500 dark:text-gray-400">
+//             Dedicated, passionate, and accomplished Full Stack Developer with 9+
+//             years of progressive experience working as an Independent Contractor
+//             for Google and developing and growing my educational social network
+//             that helps others learn programming, web design, game development,
+//             networking.
+//           </p>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
 
 // const Skills: FC = function () {
 //   return (
@@ -339,65 +339,65 @@ const GeneralInformation: FC = function () {
   );
 };
 
-const ProgressBars: FC = function () {
-  return (
-    <div className="mb-4 rounded-lg bg-white p-4 shadow dark:bg-gray-800 sm:p-6 xl:p-8">
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-16 lg:gap-8 2xl:gap-24">
-        <div className="space-y-6">
-          <div>
-            <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">
-              Figma
-            </div>
-            <Progress progress={95} color="dark" />
-          </div>
-          <div>
-            <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">
-              Php
-            </div>
-            <Progress progress={55} color="dark" />
-          </div>
-          <div>
-            <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">
-              HTML
-            </div>
-            <Progress progress={85} color="dark" />
-          </div>
-          <div>
-            <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">
-              React
-            </div>
-            <Progress progress={65} color="dark" />
-          </div>
-        </div>
-        <div className="space-y-6">
-          <div>
-            <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">
-              Vue
-            </div>
-            <Progress progress={45} color="dark" />
-          </div>
-          <div>
-            <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">
-              Marketing
-            </div>
-            <Progress progress={90} color="dark" />
-          </div>
-          <div>
-            <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">
-              Product Design
-            </div>
-            <Progress progress={99} color="dark" />
-          </div>
-          <div>
-            <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">
-              Angular
-            </div>
-            <Progress progress={45} color="dark" />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
+// const ProgressBars: FC = function () {
+//   return (
+//     <div className="mb-4 rounded-lg bg-white p-4 shadow dark:bg-gray-800 sm:p-6 xl:p-8">
+//       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-16 lg:gap-8 2xl:gap-24">
+//         <div className="space-y-6">
+//           <div>
+//             <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">
+//               Figma
+//             </div>
+//             <Progress progress={95} color="dark" />
+//           </div>
+//           <div>
+//             <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">
+//               Php
+//             </div>
+//             <Progress progress={55} color="dark" />
+//           </div>
+//           <div>
+//             <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">
+//               HTML
+//             </div>
+//             <Progress progress={85} color="dark" />
+//           </div>
+//           <div>
+//             <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">
+//               React
+//             </div>
+//             <Progress progress={65} color="dark" />
+//           </div>
+//         </div>
+//         <div className="space-y-6">
+//           <div>
+//             <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">
+//               Vue
+//             </div>
+//             <Progress progress={45} color="dark" />
+//           </div>
+//           <div>
+//             <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">
+//               Marketing
+//             </div>
+//             <Progress progress={90} color="dark" />
+//           </div>
+//           <div>
+//             <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">
+//               Product Design
+//             </div>
+//             <Progress progress={99} color="dark" />
+//           </div>
+//           <div>
+//             <div className="mb-1 text-base font-medium text-gray-500 dark:text-gray-400">
+//               Angular
+//             </div>
+//             <Progress progress={45} color="dark" />
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
 
 export default UserProfilePage;
