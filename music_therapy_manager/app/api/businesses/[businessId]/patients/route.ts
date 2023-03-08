@@ -5,7 +5,7 @@ import { db } from '../../../../../firebase';
 export async function GET(request: NextRequest) {
   // Get the business ID from the request URL
   const businessId = request.nextUrl.pathname.split('/')[3];
-console.log(businessId)
+
   if (!businessId) {
     return new NextResponse('Missing business ID', { status: 400 });
   }
