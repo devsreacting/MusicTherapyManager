@@ -8,7 +8,7 @@ import { db } from '../../../firebase'
 import { doc, getDoc } from 'firebase/firestore'
 import { useAuth } from '../../../context/AuthContext'
 
-const PatientProfilePage: FC = function ({ userId }) {
+const PatientProfilePage: FC = function () {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [userInfo, setUserInfo] = useState(null);
@@ -68,7 +68,7 @@ const PatientProfilePage: FC = function ({ userId }) {
   );
 };
 
-const ProfileIntro: FC = function ({ userInfo }) {
+const ProfileIntro: FC = function () {
   return (
     <div className="mb-4 rounded-lg bg-white p-4 shadow dark:bg-gray-800 sm:p-6 xl:p-8">
       <div className="sm:flex sm:space-x-4 xl:block xl:space-x-0">

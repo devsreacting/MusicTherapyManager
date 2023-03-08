@@ -1,5 +1,5 @@
 'use client'
-import { Breadcrumb, Progress, Button } from "flowbite-react";
+import { Breadcrumb, Button } from "flowbite-react";
 import type { FC } from "react";
 import { HiBriefcase, HiHome, HiMap } from "react-icons/hi";
 import NavbarSidebarLayout from "../../navagation/navbar-sidebar";
@@ -8,10 +8,10 @@ import { db } from '../../../firebase'
 import { doc, getDoc } from 'firebase/firestore'
 import { useAuth } from '../../../context/AuthContext'
 
-const BusinessProfilePage: FC = function ({ userId }) {
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState(null)
-    const [userInfo, setUserInfo] = useState(null);
+const BusinessProfilePage: FC = function () {
+    // const [loading, setLoading] = useState(true)
+    // const [error, setError] = useState(null)
+    // const [userInfo, setUserInfo] = useState(null);
     const { currentUser } = useAuth()
 
     useEffect(() => {
@@ -20,12 +20,11 @@ const BusinessProfilePage: FC = function ({ userId }) {
                 const docRef = doc(db, 'users', currentUser.uid)
                 const docSnap = await getDoc(docRef)
                 if (docSnap.exists()) {
-                    setUserInfo(docSnap.data())
+                    // setUserInfo(docSnap.data())
                 } else {
-                    setUserInfo({})
+                    // setUserInfo({})
                 }
             } catch (err) {
-                setError('Failed to load user data')
                 console.log(err)
             } finally {
                 setLoading(false)

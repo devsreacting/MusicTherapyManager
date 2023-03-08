@@ -3,7 +3,6 @@
 import {
   Breadcrumb,
   Button,
-  Checkbox,
   Label,
   Modal,
   Table,
@@ -12,15 +11,10 @@ import {
 import type { FC } from "react";
 import { useState } from "react";
 import {
-  HiChevronLeft,
-  HiChevronRight,
   HiCog,
-  HiDocumentDownload,
   HiDotsVertical,
   HiExclamationCircle,
   HiHome,
-  HiOutlineExclamationCircle,
-  HiOutlinePencilAlt,
   HiPlus,
   HiTrash,
 } from "react-icons/hi";
