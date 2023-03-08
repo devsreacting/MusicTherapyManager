@@ -5,7 +5,7 @@ import UserSettingsPage from "../../../../components/users/settings"
 import { useAuth } from '../../../../context/AuthContext'
 
 export default function settings() {
-    const { currentUser } = useAuth()
+    const { } = useAuth()
     return (
         <UserSettingsPage />
     )
