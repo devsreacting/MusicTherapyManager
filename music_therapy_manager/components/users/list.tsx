@@ -11,6 +11,7 @@ import {
 } from "flowbite-react";
 import type { FC } from "react";
 import { useState } from "react";
+import Link from "next/link";
 import {
   HiChevronLeft,
   HiChevronRight,
@@ -27,25 +28,43 @@ import {
 import NavbarSidebarLayout from "../navagation/navbar-sidebar";
 
 interface Props {
-  data: [] | null;
+  users: { id: number; name: string }[] | null;
 }
 
-const UserListPage: React.FC<Props> = ({ data }) => {
+const Users: React.FC<Props> = ({ users }) => {
   return (
-    <div>
-      {data ? (
-        <ul>
-          {data.map((therapist) => (
-            <li key={therapist.id}>{therapist.name}</li>
+    <section className='bg-rose-900'>
+      <div className='container py-4'>
+        <h2 className='mb-4 pb-3 text-xl border-b border-stone-500 font-medium text-white'>
+          Users
+        </h2>
+        <ul className='flex flex-col text-sm text-white list-none gap-1 list-inside'>
+          {users?.map(user => (
+            <li key={user.id} className='text-base'>
+              <Link href={`/users/${user.id}`}>{user.name}</Link>
+            </li>
           ))}
         </ul>
-      ) : (
-        <p>Loading...</p>
-      )}
-    </div>
+      </div>
+    </section>
   );
 };
 
+// const UserListPage: React.FC<Props> =  ({ data }) => {
+//   return (
+//     <div>
+//       {data ? (
+//         <ul>
+//           {data.map((therapist) => (
+//             <li key={therapist.id}>{therapist.name}</li>
+//           ))}
+//         </ul>
+//       ) : (
+//         <p>Loading...</p>
+//       )}
+//     </div>
+//   );
+// };
 // const UserListPage: FC = function ({data}) {
 //   return (
   
@@ -1314,4 +1333,4 @@ export const Pagination: FC = function () {
   );
 };
 
-export default UserListPage;
+export default Users;

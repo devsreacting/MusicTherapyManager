@@ -1,16 +1,15 @@
-"use client"
-import useSWR from 'swr'
-import UserListPage from "../../components/users/list";
-import getAllTherapists from "../../lib/therapists/getAllTherapists"
-
-export default async function Page() {
-  const { data: therapists } = await useSWR("therapists", () => getAllTherapists("9XBVJWSvtLZYPl0wOwH6"))
- 
-  if (!therapists) {
-    return <div>Loading...</div>
-  }
-
+const Page = () => {
   return (
-    <UserListPage data={therapists} />
+    <section>
+      <div className='px-4 py-4 sm:px-6 lg:px-8'>
+        <h1 className='mb-3 text-2xl font-semibold'>Welcome</h1>
+        <div className='flex items-center gap-2'>
+          <span className='text-2xl'>👈🏼</span>
+          <span>select a user</span>
+        </div>
+      </div>
+    </section>
   )
 }
+
+export default Page
