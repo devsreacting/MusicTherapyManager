@@ -5,6 +5,6 @@ export default function Page() {
 
 
   return (
-    <List />
+<div></div>
   );
 }

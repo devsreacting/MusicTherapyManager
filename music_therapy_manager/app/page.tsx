@@ -11,8 +11,8 @@ export default function Home() {
 
   return (
     <div>
-      {!currentUser && <Login />}
-      {currentUser && <List />}
+    
+    
     </div>
   )
 }

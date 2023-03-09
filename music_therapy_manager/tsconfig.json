@@ -33,5 +33,5 @@
     "target": "ESNext"
   },
   "exclude": [".next", "node_modules"],
-  "include": [".next/types/**/*.ts", "next-env.d.ts", "**/*.ts", "**/*.tsx", "generateDummyData.js","src/**/*.ts", "app/flowbite-theme.ts"]
+  "include": [".next/types/**/*.ts", "next-env.d.ts", "**/*.ts", "**/*.tsx", "generateDummyData.js","src/**/*.ts", "app/flowbite-theme.ts", "app/therapists/page.tsx"]
 }
