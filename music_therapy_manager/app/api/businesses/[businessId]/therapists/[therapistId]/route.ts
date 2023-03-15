@@ -6,7 +6,7 @@ export async function GET(request: NextRequest) {
   // Get the business ID and therapist ID from the request URL
     const businessId = request.nextUrl.pathname.split('/')[3];
     const therapistId = request.nextUrl.pathname.split('/')[5];
-console.log(businessId, therapistId)
+
   if (!businessId || !therapistId) {
     return new NextResponse('Missing business ID or therapist ID', { status: 400 });
   }

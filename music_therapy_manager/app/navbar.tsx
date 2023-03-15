@@ -8,7 +8,7 @@ import { useAuth } from '../context/AuthContext'
 
 function Navagation(): JSX.Element {
   const { logout, currentUser } = useAuth()
-  console.log(currentUser);
+
   return (
     <Navbar fluid rounded>
       <Navbar.Brand href="https://flowbite.com/">

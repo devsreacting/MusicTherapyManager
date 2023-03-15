@@ -5,7 +5,7 @@ import { db } from '../../../../../firebase';
 export async function GET(request: NextRequest) {
   // Get the business ID from the request URL
   const id = request.nextUrl.pathname.split('/')[3];
-  console.log(id)
+
   if (!id) {
     return new NextResponse('Missing business ID', { status: 400 });
   }
@@ -26,7 +26,6 @@ therapistsSnap.forEach(doc => {
     therapistsData.push({...doc.data(), id: doc.id});
 });
 
-console.log(therapistsData)
 
 // Return the therapists data as JSON
 return new NextResponse(JSON.stringify(therapistsData), {
