@@ -28,7 +28,7 @@ import {
 import NavbarSidebarLayout from "../navagation/navbar-sidebar";
 
 interface Props {
-  users: { id: number; name: string }[] | null,
+  users: { id: number; name: string; email: string }[],
 
 }
 
