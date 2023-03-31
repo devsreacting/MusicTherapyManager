@@ -19,7 +19,7 @@ const RootLayout: NextPage<PropsWithChildren> = ({ children }) => (
 
     <Head children={undefined} />
 
-    <body>
+    <body className="bg-gray-50 dark:bg-gray-900">
       
       <AuthProvider>
         <StrictMode>
@@ -32,7 +32,7 @@ const RootLayout: NextPage<PropsWithChildren> = ({ children }) => (
         </Flowbite>
         </StrictMode>
       </AuthProvider>
-     
+  
     </body>
   </html>
 );
