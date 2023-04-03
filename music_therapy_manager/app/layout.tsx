@@ -26,7 +26,7 @@ const RootLayout: NextPage<PropsWithChildren> = function ({ children }) {
           <BodyWrapper>
             <NavbarSidebarLayout>
               <Context>{children}</Context>
-              </NavbarSidebarLayout>
+            </NavbarSidebarLayout>
           </BodyWrapper>
         </AuthProvider>
 

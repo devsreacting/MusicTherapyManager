@@ -1,4 +1,3 @@
-
 export default async function getAllTherapists(businessId: string) {
   const res = await fetch(`http://localhost:3000/api/businesses/${businessId}/therapists`)
 
