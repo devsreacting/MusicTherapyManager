@@ -24,8 +24,8 @@ const RootLayout: NextPage<PropsWithChildren> = ({ children }) => (
       <AuthProvider>
         <StrictMode>
       <Flowbite theme={{ theme }}> 
-        <NavbarSidebarLayout>
-       
+        <NavbarSidebarLayout isFooter={false}>
+        
             {children}
     
         </NavbarSidebarLayout>
