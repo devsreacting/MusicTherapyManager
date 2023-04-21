@@ -19,6 +19,7 @@ const RootLayout: NextPage<PropsWithChildren> = ({ children }) => (
 
     <Head children={undefined} />
 
+
     <body className="bg-gray-50 dark:bg-gray-900">
       
       <AuthProvider>
@@ -36,5 +37,6 @@ const RootLayout: NextPage<PropsWithChildren> = ({ children }) => (
     </body>
   </html>
 );
+
 
 export default RootLayout;
